@@ -6,9 +6,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var studentRouter = require('./routes/student');
+var moduleRouter = require('./routes/module');
 var app = express();
 //import mongoose library
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended : false}))
 var mongoose = require('mongoose');
 //config database connection + database name
 var database = "mongodb+srv://tuhmgch210520:ofXLZktGwrtRJAEv@cluster0.zd9bfoa.mongodb.net/greenwichdb"
@@ -29,7 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/student', studentRouter);
+app.use('/module', moduleRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -30,4 +30,13 @@ router.get('/deleteall', async (req, res) => {
    res.redirect('/');
 })
 
+router.get('/add', (req, res) => {
+res.render('student/add')
+})
+
+router.post('/add', async (req, res) =>{
+var student = req.body
+await StudentModel.create(student)
+})
+
 module.exports = router;
